@@ -31,17 +31,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun GeoQuizScreen(modifier: Modifier = Modifier) {
+    // Здесь будет код
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    GeoQuizTheme {
-        Greeting("Android")
+fun GeoQuizScreenPreview() {
+    GeoQuizTheme { // Название вашей темы (обычно <ProjectName>Theme)
+        GeoQuizScreen()
     }
 }
