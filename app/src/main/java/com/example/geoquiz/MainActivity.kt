@@ -82,13 +82,17 @@ fun GeoQuizScreen(modifier: Modifier = Modifier) {
 
         // Кнопки True / False
         if (!isAnswered) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                Button(onClick = { /* логика будет на следующем шаге */ }) {
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Button(onClick = {
+                    isAnswered = true
+                    if (question.answer == true) score++
+                }) {
                     Text("True")
                 }
-                Button(onClick = { /* логика будет на следующем шаге */ }) {
+                Button(onClick = {
+                    isAnswered = true
+                    if (question.answer == false) score++
+                }) {
                     Text("False")
                 }
             }
@@ -98,7 +102,15 @@ fun GeoQuizScreen(modifier: Modifier = Modifier) {
 
         // Кнопка Next
         Button(
-            onClick = { /* логика будет на следующем шаге */ },
+            onClick = {
+                if (currentIndex < questions.lastIndex) {
+                    currentIndex++
+                    isAnswered = false
+                } else {
+                    // Это был последний вопрос — показываем результат
+                    showResultDialog = true
+                }
+            },
             enabled = isAnswered && currentIndex < questions.lastIndex
         ) {
             Text("Next")
